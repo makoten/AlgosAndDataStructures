@@ -47,11 +47,41 @@ void Delete(struct Array *arr, int index) {
         return;
     }
 
-    int i;
-    for (i = index; i < arr->length-1; i++)
+    for (int i = index; i < arr->length-1; i++)
         arr->A[i] = arr->A[i+1];
 
     arr->length--;
+}
+
+int Get(struct Array arr, int index) {
+    if (index < arr.length && index >= 0)
+        return arr.A[index];
+}
+
+void Set(struct Array *arr, int index, int x) {
+    if (index < arr->length && index >= 0)
+        arr->A[index] = x;
+}
+
+int Max(struct Array arr) {
+    int curr = arr.A[0];
+    for (int i = 1; i < arr.length; i++) {
+        if (curr < arr.A[i]) {
+            curr = arr.A[i];
+        }
+    }
+    return curr;
+}
+
+int Min(struct Array arr) {
+    int curr = arr.A[0];
+    for (int i = 1; i < arr.length; i++) {
+        if (curr > arr.A[i]) {
+            curr = arr.A[i];
+        }
+    }
+
+    return curr;
 }
 
 int LinearSearch(struct Array arr, int k) {
@@ -61,6 +91,15 @@ int LinearSearch(struct Array arr, int k) {
     }
 
     return -1;
+}
+
+int Sum(struct Array arr) {
+    int total = 0; // 1
+    for (int i = 0; i < arr.length; i++) { // n+1
+        total += arr.A[i]; // n
+    }
+
+    return total; // 1
 }
 
 int BinarySearch(struct Array arr, int val) {
